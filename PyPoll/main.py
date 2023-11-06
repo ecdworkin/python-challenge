@@ -1,3 +1,7 @@
+#reference CSV file
+
+PyPoll_Data = PyPoll/Resources/election_data.csv
+
 #Total number of votes cast
     #"Total Votes: 369711"
 

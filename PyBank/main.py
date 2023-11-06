@@ -1,8 +1,7 @@
 #Total number of months included in the data set 
     #Should read: "Total Months: 8686"
 import pandas as pd
-budget_data = '/Users/elizabethdworkin/Desktop/Data Analytics/Challenge III/python-challenge/PyBank/Resources/budget_data.csv'
-df = pd.read_csv(budget_data)
+budget_data = 'PyBank/Resources/budget_data.csv'
 months = budget_data("dates")
 totalmonths = len(months)
 
