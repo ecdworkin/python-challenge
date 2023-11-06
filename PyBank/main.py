@@ -1,9 +1,14 @@
 #Total number of months included in the data set 
     #Should read: "Total Months: 8686"
-len()
+import pandas as pd
+budget_data = '/Users/elizabethdworkin/Desktop/Data Analytics/Challenge III/python-challenge/PyBank/Resources/budget_data.csv'
+df = pd.read_csv(budget_data)
+months = budget_data("dates")
+totalmonths = len(months)
+
 
 #Net total amount of "Profit/Losses" over the entire period 
-    #Should read: "Total: $22564198" can I format this to include commas?
+    #Should read: "Total: $22564198" (can I format this to include commas?)
 
 
 #Changes in "Profit/Losses" over the entire period, and then the average of those changes
@@ -17,4 +22,4 @@ len()
     #Should read: "Greatest Decrease in Profits: Feb-14 ($-1825558)"
 
 #Your final script should both print the analysis to the terminal and export a text file with the results.
-print("Total Months:")
+print("Total Months:", totalmonths)
