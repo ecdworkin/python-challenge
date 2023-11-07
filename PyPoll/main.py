@@ -1,21 +1,52 @@
 #reference CSV file
+import csv
+filein = "/Users/elizabethdworkin/Desktop/Data Analytics/Challenge III/python-challenge/PyPoll/Resources/election_data.csv"
+fileout = "/Users/elizabethdworkin/Desktop/Data Analytics/Challenge III/python-challenge/PyPoll/Analysis/Analysis PyPoll.txt"
 
-PyPoll_Data = PyPoll/Resources/election_data.csv
+# read data
+with open(filein) as f:
+    reader = csv.reader(f)
+    data = list(reader)
 
-#Total number of votes cast
-    #"Total Votes: 369711" can be found referencing the column "Ballot ID"
+# clean data    
+data = data[1:] # starts from index 1 - all the way to end 
 
-#Complete list of candidates who received votes
-    #"Charles Casper Stockham: 23.049% (85213)" reference column name "Candidate"
+total_votes = len(data)
 
-#Percentage of votes each candidate won
-    #"Diana DeGette: 73.812% (272892)" 
+votes_per_candidate = {}
 
-#Total number of votes each candidate won
-    #"Raymon Anthony Doane: 3.139% (11606)"
+for ballot_id, county, candidate in data:
+  if candidate not in votes_per_candidate:
+    votes_per_candidate[candidate] = 0
+  votes_per_candidate[candidate] += 1
 
-#Winner of the election based on popular vote
-    #"Winner: Diana DeGette" 
 
-#Print the analysis to the terminal and export a text file with the results
-print()
+# Print the analysis to the terminal and export a text file with the results
+
+output = f"""Election Results
+-------------------------
+Total Votes: {total_votes}
+-------------------------
+"""
+
+winner_count = 0
+winner = ""
+for candidate, vote_count in votes_per_candidate.items():
+    if vote_count > winner_count:
+        winner_count = vote_count
+        winner = candidate
+    output += f"{candidate}: {round(vote_count / total_votes *100, 3)}% ({vote_count})\n"
+    
+output += f"""-------------------------
+Winner: {winner}
+-------------------------"""
+
+print(output)
+
+with open(fileout, "w") as f:
+    f.write(output)
+
+
+
+
+
